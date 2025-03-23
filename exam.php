@@ -274,20 +274,17 @@ document.addEventListener("DOMContentLoaded", function() {
             const optionContainer = document.createElement("div");
             optionContainer.classList.add("option");
 
-            const label = document.createElement("label");
-            label.textContent = `${String.fromCharCode(65 + index)}. `; // Add A, B, C, etc.
-
             const input = document.createElement("input");
             input.type = "radio";
             input.name = "option";
             input.id = "option" + index;
             input.value = option;
 
-            const optionText = document.createElement("span");
-            optionText.textContent = option;
+            const label = document.createElement("label");
+            label.htmlFor = "option" + index;
+            label.textContent = option;
 
-            label.appendChild(input);
-            label.appendChild(optionText);
+            optionContainer.appendChild(input);
             optionContainer.appendChild(label);
             optionsDiv.appendChild(optionContainer);
         });
