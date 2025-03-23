@@ -3,6 +3,14 @@ session_start();
 
 $conn = mysqli_connect("localhost", "root", "", "rto");
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+
 if (isset($_POST['login'])) {
     echo "<script>alert('jhgj');</script>";
     $username = $_POST["username"];
@@ -67,6 +75,27 @@ if (isset($_POST['submit'])) {
         } else {
             $insertQuery = "INSERT INTO user (name, email, mobile, pass) VALUES ('$username', '$email', '$contactno', '$password')";
             if (mysqli_query($conn, $insertQuery)) {
+                $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'nemitsagar558@gmail.com';
+        $mail->Password = 'czxq zvhd wjrc sfnl';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
+
+        $mail->setFrom('nemitsagar558@gmail.com');
+
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Thank You For Registering RTO.';
+        $mail->Body = "Thank You Pooja <br><br>
+                        You have Signup Successfully in RTO Management";
+
+        $mail->send();
                 echo "<script>alert('Registration successful');</script>";
                 $_SESSION["username"] = $row['uid'];
                 $_SESSION["name"] = $row['name'];
