@@ -27,7 +27,7 @@ if (!$admin) {
 <div class="container mt-4">
     <h2>Admin Profile</h2>
     <div class="card p-3">
-        <p><strong>ID:</strong> <?= htmlspecialchars($admin['id']); ?></p>
+        <p><strong>USERID:</strong> <?= htmlspecialchars($admin['id']); ?></p>
         <p><strong>Username:</strong> <?= htmlspecialchars($admin['username']); ?></p>
         <p><a href="logout.php" class="btn btn-danger m-1"
         onclick="return confirm('Are you sure you want to logout ?');">Logout</a></p>
