@@ -180,18 +180,19 @@
         const imgElement =document.getElementById('image');
 
         function displayQuestion() {
-        const currentQuestion = questions[currentQuestionIndex];
-        questionElement.textContent = currentQuestion.question;
-        optionsElement.innerHTML = '';
-        currentQuestion.options.forEach((option, index) => {
-            const optionElement = document.createElement('div');
-            optionElement.textContent = option;
-            optionElement.classList.add('option');
-            optionElement.setAttribute('data-index', index);
-            optionElement.onclick = () => selectOption(index);
-            optionsElement.appendChild(optionElement);
-        });
-}
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D', 'E']; // Add more labels if needed
+            currentQuestion.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.textContent = `${labels[index]}. ${option}`;
+                optionElement.classList.add('option');
+                optionElement.setAttribute('data-index', index);
+                optionElement.onclick = () => selectOption(index);
+                optionsElement.appendChild(optionElement);
+            });
+        }
 
         function selectOption(selectedIndex) {
             const selectedOption = optionsElement.querySelector(`[data-index="${selectedIndex}"]`);

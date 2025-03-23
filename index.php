@@ -80,8 +80,8 @@ if (isset($_POST['submit'])) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'nemitsagar558@gmail.com';
-        $mail->Password = 'czxq zvhd wjrc sfnl';
+        $mail->Username = '';
+        $mail->Password = '';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
@@ -140,7 +140,7 @@ mysqli_close($conn);
 </head>
 
 <body>
-    <script>
+    <!-- <script>
         const togglePassword = document.querySelector('#togglePassword');
   const password = document.querySelector('#id_password');
 
@@ -151,45 +151,53 @@ mysqli_close($conn);
     // toggle the eye slash icon
     this.classList.toggle('fa-eye-slash');
 });
-    </script>
+    </script> -->
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="sign-in-form">
-                    <h2 class="title">Sign in</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" name="username" required />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        
-                    <input type="password" placeholder="Password" name="password"  />
-                    <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
-                </div>
-                    <input type="submit" value="Login" class="btn solid" name="login" />
-                </form>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="sign-up-form">
-                    <h2 class="title">Sign up</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" name="username"  />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" name="email"  />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-phone"></i>
-                        <input type="text" maxlength="10" placeholder="Mobile Number" name="contactno"  />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" name="password"  />
-                   
-                    </div>
-                    <input type="submit" class="btn" value="Sign up" name="submit" />
-                </form>
+               <!-- Sign in Form -->
+<!-- Sign in Form -->
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="sign-in-form">
+    <h2 class="title">Sign in</h2>
+    <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Username" name="username" required />
+    </div>
+    <div class="input-field" style="position: relative;">
+        <i class="fas fa-lock"></i>
+        <!-- Use a unique id for sign in password input -->
+        <input type="password" placeholder="Password" name="password" id="password_id2" required />
+        <!-- Unique eye icon for sign in -->
+        <i class="far fa-eye" id="togglePasswordSignIn" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+    <input type="submit" value="Login" class="btn solid" name="login" />
+</form>
+
+<!-- Sign up Form -->
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="sign-up-form">
+    <h2 class="title">Sign up</h2>
+    <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Username" name="username"  />
+    </div>
+    <div class="input-field">
+        <i class="fas fa-envelope"></i>
+        <input type="email" placeholder="Email" name="email"  />
+    </div>
+    <div class="input-field">
+        <i class="fas fa-phone"></i>
+        <input type="text" maxlength="10" placeholder="Mobile Number" name="contactno"  />
+    </div>
+    <div class="input-field" style="position: relative;">
+        <i class="fas fa-lock"></i>
+        <!-- Unique id for sign up password input -->
+        <input type="password" placeholder="Password" name="password" id="password_id" required />
+        <!-- Unique eye icon for sign up -->
+        <i class="far fa-eye" id="togglePasswordSignUp" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i> 
+    </div>
+    <input type="submit" class="btn" value="Sign up" name="submit" />
+</form>
+
             </div>
         </div>
 
@@ -220,6 +228,29 @@ mysqli_close($conn);
     </div>
 
     <script src="./js/script1.js"></script>
+    <script>
+    // Toggle for sign in form
+    const togglePasswordSignIn = document.querySelector('#togglePasswordSignIn');
+    const passwordSignIn = document.querySelector('#password_id2');
+    
+    togglePasswordSignIn.addEventListener('click', function () {
+        const type = passwordSignIn.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordSignIn.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    // Toggle for sign up form
+    const togglePasswordSignUp = document.querySelector('#togglePasswordSignUp');
+    const passwordSignUp = document.querySelector('#password_id');
+    
+    togglePasswordSignUp.addEventListener('click', function () {
+        const type = passwordSignUp.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordSignUp.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
+
+
 </body>
 
 </html>

@@ -191,14 +191,13 @@
         // Displaying the image if available
         if (currentQuestion.image) {
             imgElement.src = currentQuestion.image;
-            imgElement.alt= "ok"
-            // alert(imageElement.src)
-            // optionsElement.appendChild(imageElement);
+            imgElement.alt = "ok";
         }
         optionsElement.innerHTML = '';
+        const labels = ['A', 'B', 'C', 'D', 'E']; // Add more labels if needed
         currentQuestion.options.forEach((option, index) => {
             const optionElement = document.createElement('div');
-            optionElement.textContent = option;
+            optionElement.textContent = `${labels[index]}. ${option}`;
             optionElement.classList.add('option');
             optionElement.setAttribute('data-index', index);
             optionElement.onclick = () => selectOption(index);
